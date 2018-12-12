@@ -78,6 +78,7 @@ import numpy as np
 
 # ************************ Initialization ************************
 
+JAVA_PATH = '/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java'
 Home_Dir = os.path.curdir                               # Home directory
 MOA_CP = os.path.join(Home_Dir, 'MOA')                  # MOA directory
 n_procs = 20                                            # Number of processes
@@ -111,7 +112,7 @@ class IR_Detector():
         return features_IDs
     
     def test(self, arff_file):
-        subprocess.call(['java', '-cp', os.path.join(MOA_CP, 'moa.jar'), \
+        subprocess.call([JAVA_PATH, '-cp', os.path.join(MOA_CP, 'moa.jar'), \
                         '-javaagent:' + os.path.join(MOA_CP, 'sizeofag-1.0.0.jar'), 'moa.DoTask', \
                         'EvaluatePrequential', '-l', '(' + self.learner_IR, '-s', '20)', \
                         '-s', '(ArffFileStream', '-f', arff_file, '-c', self.class_col_num_IR + ')', \
@@ -135,7 +136,7 @@ class SE_Detector():
         return features_STs
 
     def test(self, arff_file):
-        subprocess.call(['java', '-cp', os.path.join(MOA_CP, 'moa.jar'), \
+        subprocess.call([JAVA_PATH, '-cp', os.path.join(MOA_CP, 'moa.jar'), \
                         '-javaagent:' + os.path.join(MOA_CP, 'sizeofag-1.0.0.jar'), 'moa.DoTask', \
                         'EvaluatePrequential', '-l', '(' + self.learner_SE, '-s', '20)', \
                         '-s', '(ArffFileStream', '-f', arff_file, '-c', self.class_col_num_SE + ')', \
@@ -159,7 +160,7 @@ class CF_Detector():
         return features_CFs
 
     def test(self, arff_file):
-        subprocess.call(['java', '-cp', os.path.join(MOA_CP, 'moa.jar'), \
+        subprocess.call([JAVA_PATH, '-cp', os.path.join(MOA_CP, 'moa.jar'), \
                         '-javaagent:' + os.path.join(MOA_CP, 'sizeofag-1.0.0.jar'), 'moa.DoTask', \
                         'EvaluatePrequential', '-l', '(' + self.learner_CF, '-s', '20)', \
                         '-s', '(ArffFileStream', '-f', arff_file, '-c', self.class_col_num_CF + ')', \
